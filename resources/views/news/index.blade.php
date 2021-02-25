@@ -26,5 +26,5 @@
         </div>
       </div>
     </div>
-  
+  <!--  @include('news.show',['news'=> $news])-->
 @stop
