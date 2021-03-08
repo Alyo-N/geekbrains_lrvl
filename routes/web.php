@@ -23,7 +23,6 @@ Route::get('/', function () {
 });
 Route::group(['prefix'=>'admin','as' => 'admin.'], function() {
     Route::get('/',[IndexController::class, 'index']) ->name('admin');
-    
     Route::resource('news/sources', DownloadNewsController::class);
     Route::resource('news', AdminNewsController::class);
     Route::resource('categories', CategoryController::class);

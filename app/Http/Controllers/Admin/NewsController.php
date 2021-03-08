@@ -31,7 +31,7 @@ class NewsController extends Controller
 
     public function download()
     {
-        //return view('admin.news.sources');
+       // return view('admin.news.sources');
     }
     /**
      * Store a newly created resource in storage.

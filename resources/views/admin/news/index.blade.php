@@ -5,7 +5,10 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Список новостей</h1> &nbsp; <strong>
                 <a href="{{ route('admin.news.create') }}">Добавить новость</a>
-              <!-- не могу сделать ссылку на route('admin.news.sources.index') ошибка route not defined-->  
+                <br>
+                <a href="{{ route('admin.sources.index') }}">Скачать новость</a>
+              <!-- не могу сделать ссылку на route('admin.news.sources.index') ошибка route not defined--> 
+              
             </strong>
         </div>
 

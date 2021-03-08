@@ -6,6 +6,8 @@
             <h1 class="h3 mb-0 text-gray-800">Добавить новость</h1> &nbsp; 
             <strong>
                 <a href="{{ route('admin.news.index') }}">Список новостей</a>
+                <br>
+                <a href="{{ route('admin.sources.index') }}">Скачать новость</a>
             </strong>
         </div>
 
