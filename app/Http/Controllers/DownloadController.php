@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Download;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class DownloadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //return view('')
-        $newsList = [];
-        return view('admin.news.index',['newsList' =>$newsList]);
+        //
     }
 
     /**
@@ -26,13 +24,9 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.add');
+        //
     }
 
-    public function download()
-    {
-        //return view('admin.news.sources');
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -47,10 +41,10 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Download  $download
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Download $download)
     {
         //
     }
@@ -58,10 +52,10 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Download  $download
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Download $download)
     {
         //
     }
@@ -70,10 +64,10 @@ class NewsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Download  $download
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Download $download)
     {
         //
     }
@@ -81,10 +75,10 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Download  $download
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Download $download)
     {
         //
     }

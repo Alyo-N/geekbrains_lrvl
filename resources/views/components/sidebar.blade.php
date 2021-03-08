@@ -14,7 +14,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="{{ route('admin.admin') }}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Панель управления</span></a>
 </li>
@@ -37,8 +37,9 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Управление:</h6>
-            <a class="collapse-item" href="{{ route('admin.categories.index') }}">Категории</a>
-            <a class="collapse-item" href="cards.html">Новости</a>
+            <a class="collapse-item" @if(request()->routeIs('admin.categories.*'))  style="color:red;" @endif href="{{ route('admin.categories.index') }}">Категории</a>
+            <a class="collapse-item" @if(request()->is('admin/news/*'))  style="color:red;" @endif href="{{ route('admin.news.index') }}">Новости</a>
+           
         </div>
     </div>
 </li>

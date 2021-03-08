@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class DownloadNewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class NewsController extends Controller
     public function index()
     {
         //return view('')
-        $newsList = [];
-        return view('admin.news.index',['newsList' =>$newsList]);
+        //$newsList = [];
+        return view('admin.news.sources');
     }
 
     /**
@@ -26,12 +26,12 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.add');
+       // return view('admin.news.add');
     }
 
     public function download()
     {
-        //return view('admin.news.sources');
+       // return view('admin.news.sources');
     }
     /**
      * Store a newly created resource in storage.
