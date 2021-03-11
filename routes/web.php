@@ -34,3 +34,4 @@ Route::get('/news', [NewsController::class, 'index'])
 Route::get('/news/{id}', [NewsController::class, 'show'])
 -> where('id','\d+')
 -> name('news.show');
+

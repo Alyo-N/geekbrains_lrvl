@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,7 +15,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = [];
+        $objCategory = new Category();
+        $categories = $objCategory->getCategories();
+        //dd($categories);
+        //dd($objCategory->getCategory(7));
+        //$categories = $objCategory->getCategories();
+        //dd(\DB::table('news')->count()); агр. ф-ии
+        dd(\DB::table('news')->where('id','>','5')->get()); //where('', like,''), where('id',5), 
+        //where([['id'>3],['description','like','rtrt']])->get() 
         return view('admin.news.categories.index',['categories' => $categories]);
     }
 
@@ -49,9 +58,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        return view('admin.news.categories.show', ['category' => $category]);
     }
 
     /**
