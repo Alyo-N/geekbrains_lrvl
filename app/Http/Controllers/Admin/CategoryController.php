@@ -16,7 +16,11 @@ class CategoryController extends Controller
     public function index()
     {
         //$objCategory = new Category();
-        $categories = Category::all();
+        $categories = Category::select('id','title','slug','description','created_at')
+            ->with('news')
+            //->orderBy()
+            ->paginate(5);
+
         //$model = Category::find(3); //выбор  по id
         //$model = Category::findOrFail(33);
         //dd($model);

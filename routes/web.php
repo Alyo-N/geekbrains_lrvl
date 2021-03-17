@@ -28,10 +28,22 @@ Route::group(['prefix'=>'admin','as' => 'admin.'], function() {
     Route::resource('categories', CategoryController::class);
 });
 
-Route::get('/news', [NewsController::class, 'index'])
-->name('news.index');
+Route::group(['prefix' => 'news', 'as' => 'news.'], function() {
+    Route::get('/', [NewsController::class, 'index'])
+        ->name('index');
+    Route::get('/{id}.html', [NewsController::class, 'show'])
+        ->where('id', '\d+')
+        ->name('show');
+  });
 
-Route::get('/news/{id}', [NewsController::class, 'show'])
--> where('id','\d+')
--> name('news.show');
+  Route::get('/example/{category}', fn(\App\Models\Category  $category) => $category);
+  Route::get('/collections', function() {
+	$array = ['name' => 'Test', 'age' => 26, 'company' => 'Example',
+		'work' => 'Programmer', 'country' => 'Russia', 'city' => 'Moscow', 'rules' => [
+			['id' => 1, 'title' => 'All previleges'],
+			['id' => 2, 'title' => 'Example data']
+		]];
 
+	$collect = collect($array);
+	dd($collect->toArray());
+ }); 

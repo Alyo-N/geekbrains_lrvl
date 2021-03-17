@@ -27,7 +27,7 @@
                    @forelse($categories as $category)
                        <tr>
                            <td>{{ $category->id }}</td>
-                           <td>{{ $category->title }} </td>
+                           <td>{{ $category->title }} (news: {{ $category->news->count() }}) </td>
                            <td>{{ $category->slug }}</td>
                            <td>{{ $category->created_at }}</td>
                            <td><a href="{{ route('admin.categories.show', ['category' => $category]) }}">look</a> &nbsp; 
