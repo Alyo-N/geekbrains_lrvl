@@ -9,10 +9,10 @@ class NewsController extends Controller
 
     public function index(FakeNewsService $service)
     {
-        
+            $newsTmp = NewsTmp::with('category')->get();
 
             return view('news.index', [
-                'listNews' => $service->getNews()
+                'listNews' => $newsTmp
                 ]);
         
     }
