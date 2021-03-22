@@ -56,14 +56,16 @@ class CategoryController extends Controller
      */
     public function store(CategoryCreateRequest $request)
     {
-        $data = $request->$request->validated();
+        $data = $request->validated();
         $data['slug'] = \Str::slug($data['title']);
         $create = Category::create($data);
         if($create) {
-            return redirect()->route('admin.categories.index')->with('success', 'Запись успешно добавлена');
+            return redirect()->route('admin.categories.index')
+                ->with('success', __('messages.admin.categories.success'));
         }
 
-        return back()->withInput()->with('errors','Не удалось добавить запись');
+        return back()->withInput()
+            ->with('errors',__('messages.admin.categories.fail'));
         //save in database ex: news::create($request->all());
         //Assert
         //return back();
@@ -111,10 +113,11 @@ class CategoryController extends Controller
         $save = $category->fill($data)->save();
         if($save) {
             return redirect()->route('admin.categories.index')
-            ->with('success', 'Запись успешно обновлена');
+            ->with('success', __('messages.admin.categories.success'));
         }
 
-        return back()->withInput()->with('errors','Не удалось обновить запись');
+        return back()->withInput()
+        ->with('errors',__('messages.admin.categories.fail'));
     }
 
     /**
