@@ -29,7 +29,7 @@
             </div>
              <div class="form-group">
                  <label for="title">Описание категории</label>
-                 <textarea class="form-control" name="description">{!!  old('description') !!}</textarea>
+                 <textarea class="form-control" name="description" id="description">{!!  old('description') !!}</textarea>
              </div>
              <br>
              <button type="submit" class="btn btn-success">Сохранить</button>
@@ -40,4 +40,30 @@
 
     </div>
 @endsection 
+@push('js')
+    <script type="text/javascript">
+        ClassicEditor
+        .create(document.querySelector( '#description' )
+        ,{
+            options: {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        },
+            /*toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        
+            heading: {
+                options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                ]   
+        }*/
+    } )
+        .catch(error => {
+            console.error( error );
+        } );
+    </script>
+@endpush
 

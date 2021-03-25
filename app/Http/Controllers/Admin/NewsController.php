@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\News;
+use App\Models\Category;
 
 class NewsController extends Controller
 {
@@ -15,7 +17,7 @@ class NewsController extends Controller
     public function index()
     {
         //return view('')
-        $newsList = [];
+        $newsList = News::all();
         return view('admin.news.index',['newsList' =>$newsList]);
     }
 
@@ -26,7 +28,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.add');
+        $categories = Category::all();
+        return view('admin.news.create', ['categories' => $categories]);
     }
 
     public function download()
@@ -41,7 +44,20 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only(['title','description','status']);
+        $categoryId = $request->input('category_id');
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $ext = $image->getClientOriginalExtension();
+            $fileName = uniqid() . "." . $ext;
+            $data['image'] = $image->storeAs('news', $fileName, 'uploads');
+        }
+
+       $category = Category::findOrFail($categoryId);
+       $news = new News($data);
+       $status = $category->news()->save($news);
+
+       return back();
     }
 
     /**

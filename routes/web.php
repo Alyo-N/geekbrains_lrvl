@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\DownloadNewsController as DownloadNewsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Account\IndexController as AccountController;
+use App\Http\Controllers\ParserController;
+use App\Http\Controllers\SocialiteController;
+use \UniSharp\LaravelFilemanager\Lfm;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +45,7 @@ Route::group(['middleware' => 'auth'], function() {
   });
 });
 });
-  Route::get('/example/{category}', fn(\App\Models\Category  $category) => $category);
+  Route::get('/example/{category}', fn(\App\Models\Category $category) => $category);
   Route::get('/collections', function() {
 	$array = ['name' => 'Test', 'age' => 26, 'company' => 'Example',
 		'work' => 'Programmer', 'country' => 'Russia', 'city' => 'Moscow', 'rules' => [
@@ -56,7 +59,22 @@ Route::group(['middleware' => 'auth'], function() {
      
  }); 
 
+ Route::get('/session', function() {
+
+	session(['testsession' => 'value']);
+	return redirect('/');
+});
 
 
- Auth::routes();
+Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/parser/news', ParserController::class);
+
+Route::group(['middleware' => 'guest'], function() {
+	Route::get('/auth/vk', [SocialiteController::class, 'init'])->name('vk.init');
+	Route::get('/auth/vk/callback', [SocialiteController::class, 'callback'])->name('vk.callback');
+});
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});

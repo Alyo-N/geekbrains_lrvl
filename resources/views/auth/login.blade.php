@@ -37,6 +37,7 @@
                                     </span>
                                 @enderror
                             </div>
+                            <a href="{{ route('vk.init') }}">Вход через ВК</a>
                         </div>
 
                         <div class="form-group row">
